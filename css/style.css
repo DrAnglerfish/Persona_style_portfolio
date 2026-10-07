@@ -18,14 +18,54 @@ body{
 .display{font-family:'Archivo Black','Arial Black',Impact,sans-serif;}
 
 /* ---------- HOME BACKGROUND VIDEO ---------- */
-#home-video{
+#home-video-wrap{
   position:fixed;
   inset:0;
   width:100%;
   height:100%;
-  object-fit:cover;
   z-index:0;
   pointer-events:none;
+}
+
+/* Both videos fill the wrapper and stack on each other */
+#home-video-wrap video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* Loop underneath, intro on top */
+#home-video-loop{ z-index:1; }
+#home-video-intro{ z-index:2; }
+
+/* Added by the script when the intro ends */
+#home-video-intro.is-hidden{
+  display:none;
+}
+
+/* Overlay image above both videos (hidden with the wrapper on other screens) */
+#home-video-wrap .fv-overlay{
+  position:absolute;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  opacity:0.5;   /* overlay transparency */
+}
+#home-video-wrap .fv-overlay .particle{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* Desktop image by default, mobile image on small screens */
+#home-video-wrap .fv-overlay .v-sp{ display:none; }
+@media (max-width:900px){
+  #home-video-wrap .fv-overlay .v-pc{ display:none; }
+  #home-video-wrap .fv-overlay .v-sp{ display:block; }
 }
 
 /* ============ BACKGROUND LAYERS ============ */
@@ -551,18 +591,17 @@ body.has-art-home #big-name .ch:not(.box):not(.boxw){
    ========================================================= */
 
 /* Put video above the normal background */
-#home-video {
+#home-video-wrap {
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   z-index: 1;
   pointer-events: none;
 }
 
 /* Hide video on every screen except Home */
-body[data-screen]:not([data-screen="home"]) #home-video {
+body[data-screen]:not([data-screen="home"]) #home-video-wrap {
   display: none !important;
 }
 

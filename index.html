@@ -53,9 +53,27 @@
 <audio id="sfx-select" src="assets/sfx/select.mp3" preload="auto"></audio>
 <button id="audio-toggle" aria-label="Turn audio on">🔇</button>
 
-<video id="home-video" autoplay muted loop playsinline>
-  <source src="assets/video/home-background.mp4" type="video/mp4">
-</video>
+<!-- Home background video: intro plays once, then the loop takes over -->
+<div id="home-video-wrap" aria-hidden="true">
+
+  <!-- Loop video (underneath). Started by the script when the intro ends -->
+  <video id="home-video-loop" muted loop playsinline preload="auto">
+    <source src="assets/video/home-background-loop.mp4" type="video/mp4">
+  </video>
+
+  <!-- Intro video (on top). Plays once, no loop -->
+  <video id="home-video-intro" autoplay muted playsinline preload="auto">
+    <source src="assets/video/home-background-intro.mp4" type="video/mp4">
+  </video>
+
+  <!-- Hologram overlay on top of the videos (desktop + mobile versions).
+       Each image removes itself if its file is missing -->
+  <div class="fv-overlay">
+    <img alt="" class="particle v-pc" src="assets/imgs/hologram.webp" onerror="this.remove()">
+    <img alt="" class="particle v-sp" src="assets/imgs/hologram_mobile.webp" onerror="this.remove()">
+  </div>
+
+</div>
 
 
 <div id="shell">

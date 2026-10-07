@@ -18,6 +18,8 @@ const View = {
     sfx:        document.getElementById("sfx-select"),
     cursor:     document.getElementById("cursor"),
     clock:      document.getElementById("clock"),
+    homeIntro:  document.getElementById("home-video-intro"),
+    homeLoop:   document.getElementById("home-video-loop"),
   },
 
   init() {
@@ -30,6 +32,7 @@ const View = {
     this.startClock();
     this.startParallax();
     this.startCursor();
+    this.startHomeVideo();
     document.body.classList.add("loaded");
   },
 
@@ -252,5 +255,50 @@ el.appendChild(span);
       requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
+  },
+
+  /* ---------- Home background video: intro plays once, then loops ---------- */
+  startHomeVideo() {
+    const intro = this.els.homeIntro;
+    const loop  = this.els.homeLoop;
+    if (!intro || !loop) return;
+    let done = false;
+
+    const playLoop = () => {
+      const p = loop.play();
+      if (p && p.catch) p.catch(() => {});
+    };
+    const hideIntro = () => intro.classList.add("is-hidden");
+
+    // Intro finished: start the loop, but keep the intro's last frame on screen
+    // until the loop has actually drawn a frame (this avoids the hitch)
+    const switchToLoop = () => {
+      if (done) return;
+      done = true;
+      loop.currentTime = 0;
+      if ("requestVideoFrameCallback" in loop) {
+        loop.requestVideoFrameCallback(hideIntro);
+      } else {
+        loop.addEventListener("playing", hideIntro, { once: true });
+      }
+      setTimeout(hideIntro, 700);   // safety, in case the callback never fires
+      playLoop();
+    };
+
+    // Fallback (intro missing, failed, or autoplay blocked): go straight to the loop
+    const skipIntro = () => {
+      if (done) return;
+      done = true;
+      playLoop();
+      hideIntro();
+    };
+
+    intro.addEventListener("ended", switchToLoop);
+
+    const src = intro.querySelector("source");
+    if (src) src.addEventListener("error", skipIntro);
+    intro.addEventListener("error", skipIntro);
+    const ip = intro.play();
+    if (ip && ip.catch) ip.catch(skipIntro);
   },
 };
