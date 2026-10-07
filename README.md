@@ -1,4 +1,4 @@
-# Persona-Style Portfolio — Numal Das
+# Persona-Style Portfolio — William Truong
 
 A Persona menu-inspired portfolio, structured as Model–View–Controller.
 
@@ -6,7 +6,7 @@ This project is inspired by [Numal400/Persona_style_portfolio](https://github.co
 
 ## Structure
 
-```
+```text
 ├── index.html            View skeleton — markup only, no logic or styles
 ├── css/
 │   └── style.css         All styling (theme colors in :root at the top)
@@ -26,7 +26,6 @@ This project is inspired by [Numal400/Persona_style_portfolio](https://github.co
     │    ├── home-background-intro.mp4
     │    └── home-background-loop.mp4
     ├── cv/               your downloadable CV (linked from About + Contact)
-    ├── hero.png          ← optional: extra art layered on the home screen
     ├── me.jpg            ← add: your photo for the About polaroid
     └── projects/         ← add: card thumbnails
         ├── bsl.png, medcnn.png, gesture.png, rapidcheck.png   (featured)
@@ -44,10 +43,11 @@ Colors are CSS variables at the top of **css/style.css**.
 
 ## Run locally
 
-```
+```text
 python3 -m http.server
 ```
-then open http://localhost:8000 — opening index.html directly (file://)
+
+then open <http://localhost:8000> — opening index.html directly (file://)
 blocks the audio fetch and GitHub API in most browsers.
 
 ## Deploy
