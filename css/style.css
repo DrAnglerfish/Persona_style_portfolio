@@ -358,20 +358,7 @@ body[data-screen]:not([data-screen="home"]) #slash{
 .contact-chip:hover{background:var(--white);color:var(--red);transform:skewX(-8deg) rotate(0) scale(1.06);}
 
 /* ============ IMAGE SLOTS ============ */
-/* 1. Hero art — big character/portrait on the right, over the black slash */
-#hero-art{
-  position:fixed;right:0;bottom:0;z-index:1;
-  height:min(92vh,900px);max-width:46vw;object-fit:contain;object-position:bottom right;
-  filter:drop-shadow(-14px 10px 0 rgba(0, 73, 230, 0.85)) drop-shadow(-4px 4px 12px rgba(0,0,0,.6));
-  pointer-events:none;
-  transition:transform .8s cubic-bezier(.8,0,.15,1), opacity .5s;
-}
-body[data-screen]:not([data-screen="home"]) #hero-art{
-  transform:translateX(60%) skewX(-6deg);opacity:0;
-}
-@media (max-width:900px){#hero-art{max-width:70vw;opacity:.5;}}
-
-/* 2. Project card thumbnails */
+/* 1. Project card thumbnails */
 .card .thumb{
   margin:-20px -22px 14px;height:150px;overflow:hidden;position:relative;
   clip-path:polygon(0 0, 100% 0, 100% 82%, 0 100%);
@@ -388,7 +375,7 @@ body[data-screen]:not([data-screen="home"]) #hero-art{
   background:linear-gradient(115deg, transparent 78%, var(--red) 78.5%);
 }
 
-/* 3. About photo — taped-up polaroid */
+/* 2. About photo — taped-up polaroid */
 .about-photo{
   float:right;width:min(240px,38%);margin:0 0 14px 22px;
   background:var(--white);padding:10px 10px 34px;

@@ -197,11 +197,18 @@ el.appendChild(span);
 
   /* ---------- Ambient: clock, parallax, animated cursor ---------- */
   startClock() {
-    setInterval(() => {
-      this.els.clock.textContent =
-        new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) + " · IND";
-    }, 1000);
-  },
+  const tick = () => {
+    this.els.clock.textContent =
+      new Date().toLocaleTimeString([], {
+        hour12: false,
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone: "America/Los_Angeles",
+      }) + " · PDT";
+  };
+  tick();
+  setInterval(tick, 1000);
+},
 
   startParallax() {
     if (this.reducedMotion) return;
