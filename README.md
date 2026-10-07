@@ -2,7 +2,7 @@
 
 A Persona menu-inspired portfolio, structured as Model–View–Controller.
 
-This project is inspired by [Numal400/Persona_style_portfolio](https://github.com/Numal400/Persona_style_portfolio)
+This project is inspired by [Numal400/Persona_style_portfolio](https://github.com/Numal400/Persona_style_portfolio) and [Omicron69/persona5-style-portfolio](https://github.com/Omicron69/persona5-style-portfolio)
 
 ## Structure
 
@@ -19,6 +19,12 @@ This project is inspired by [Numal400/Persona_style_portfolio](https://github.co
     ├── cursors/          Animated cursor sprite strips (30 frames each)
     ├── menus/            per-screen backgrounds: home.jpg, skills.jpg, about.jpg,
     │                     contact.jpg (included) — add projects.jpg to complete the set
+    ├── imgs/             Overlay over looping video for home screen
+    │    ├── hologram.webp 
+    │    └── hologram_mobile.webp
+    ├─── video/           Files for home screen, downloaded from Persona 3 Offical Website
+    │    ├── home-background-intro.mp4
+    │    └── home-background-loop.mp4
     ├── cv/               your downloadable CV (linked from About + Contact)
     ├── hero.png          ← optional: extra art layered on the home screen
     ├── me.jpg            ← add: your photo for the About polaroid
@@ -28,8 +34,6 @@ This project is inspired by [Numal400/Persona_style_portfolio](https://github.co
 ```
 
 Missing images hide themselves — no broken icons.
-
-The video folder inside assets are not uploaded as they exceed 500MB. I recommand downloading them online and add them inside assets in a new video folder later on. 
 
 ## Editing content
 
