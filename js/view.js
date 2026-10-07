@@ -196,15 +196,21 @@ el.appendChild(span);
   },
 
   /* ---------- Ambient: clock, parallax, animated cursor ---------- */
-  startClock() {
-  const tick = () => {
-    this.els.clock.textContent =
-      new Date().toLocaleTimeString([], {
-        hour12: false,
+  startClock() {                     // Build the formatter once and reuse it
+    const fmt = new Intl.DateTimeFormat("en-US", {
         hour: "2-digit",
         minute: "2-digit",
+        hourCycle: "h23",            // 24-hour clock
         timeZone: "America/Los_Angeles",
-      }) + " · PDT";
+        timeZoneName: "short",       // gives "PDT" or "PST" automatically
+      });
+      
+  const tick = () => {
+    const parts = fmt.formatToParts(new Date());
+    const get = type => parts.find(p => p.type === type).value;
+    this.els.clock.textContent =
+      `${get("hour")}:${get("minute")} · ${get("timeZoneName")}`;
+
   };
   tick();
   setInterval(tick, 1000);
